@@ -1,0 +1,225 @@
+version: 2
+
+models:
+
+  # =========================
+  # HUBS
+  # =========================
+
+  - name: hub_order
+    columns:
+      - name: order_hk
+        tests:
+          - not_null
+          - unique
+
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+
+      - name: load_date
+        tests:
+          - not_null
+
+      - name: record_source
+        tests:
+          - not_null
+
+  - name: hub_customer
+    columns:
+      - name: customer_hk
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+
+      - name: load_date
+        tests:
+          - not_null
+
+  - name: hub_product
+    columns:
+      - name: product_hk
+        tests:
+          - not_null
+          - unique
+
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+
+      - name: load_date
+        tests:
+          - not_null
+
+  - name: hub_seller
+    columns:
+      - name: seller_hk
+        tests:
+          - not_null
+          - unique
+
+      - name: seller_id
+        tests:
+          - not_null
+          - unique
+
+      - name: load_date
+        tests:
+          - not_null
+
+
+  # =========================
+  # LINKS
+  # =========================
+
+  - name: link_order_customer
+    columns:
+      - name: order_customer_hk
+        tests:
+          - not_null
+          - unique
+
+      - name: order_hk
+        tests:
+          - not_null
+
+      - name: customer_hk
+        tests:
+          - not_null
+
+      - name: load_date
+        tests:
+          - not_null
+
+  - name: link_order_item
+    columns:
+      - name: order_item_hk
+        tests:
+          - not_null
+          - unique
+
+      - name: order_hk
+        tests:
+          - not_null
+
+      - name: product_hk
+        tests:
+          - not_null
+
+      - name: seller_hk
+        tests:
+          - not_null
+
+      - name: load_date
+        tests:
+          - not_null
+
+
+  # =========================
+  # SATELLITES
+  # =========================
+
+  - name: sat_order
+    columns:
+      - name: order_hk
+        tests:
+          - not_null
+
+      - name: hashdiff
+        tests:
+          - not_null
+
+      - name: load_date
+        tests:
+          - not_null
+
+  - name: sat_customer
+    columns:
+      - name: customer_hk
+        tests:
+          - not_null
+
+      - name: hashdiff
+        tests:
+          - not_null
+
+      - name: load_date
+        tests:
+          - not_null
+
+  - name: sat_product
+    columns:
+      - name: product_hk
+        tests:
+          - not_null
+
+      - name: hashdiff
+        tests:
+          - not_null
+
+      - name: load_date
+        tests:
+          - not_null
+
+  - name: sat_seller
+    columns:
+      - name: seller_hk
+        tests:
+          - not_null
+
+      - name: hashdiff
+        tests:
+          - not_null
+
+      - name: load_date
+        tests:
+          - not_null
+
+  - name: sat_order_item
+    columns:
+      - name: order_item_hk
+        tests:
+          - not_null
+
+      - name: hashdiff
+        tests:
+          - not_null
+
+      - name: load_date
+        tests:
+          - not_null
+
+  - name: sat_order_payment
+    columns:
+      - name: order_payment_hk
+        tests:
+          - not_null
+
+      - name: hashdiff
+        tests:
+          - not_null
+
+      - name: load_date
+        tests:
+          - not_null
+
+  - name: sat_order_review
+    columns:
+      - name: order_review_hk
+        tests:
+          - not_null
+
+      - name: hashdiff
+        tests:
+          - not_null
+
+      - name: load_date
+        tests:
+          - not_null
