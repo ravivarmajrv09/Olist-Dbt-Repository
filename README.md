@@ -1,5 +1,7 @@
 Welcome to your new dbt project!
+# Olist DBT Project
 
+DBT project for Olist order analytics using Snowflake
 ### Using the starter project
 
 Try running the following commands:
