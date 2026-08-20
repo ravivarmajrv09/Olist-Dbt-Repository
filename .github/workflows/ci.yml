@@ -23,6 +23,25 @@ jobs:
           python -m pip install --upgrade pip
           pip install dbt-snowflake
 
+      - name: Create DBT profile
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml <<EOF
+          my_dbt_project:
+            target: dev
+            outputs:
+              dev:
+                type: snowflake
+                account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+                user: ${{ secrets.SNOWFLAKE_USER }}
+                password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                database: ${{ secrets.SNOWFLAKE_DATABASE }}
+                schema: ${{ secrets.SNOWFLAKE_SCHEMA }}
+                warehouse: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+                threads: 4
+                role: SYSADMIN
+          EOF
+
       - name: Install dbt dependencies
         run: dbt deps
 
