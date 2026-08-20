@@ -33,7 +33,7 @@ jobs:
       - name: Create profiles.yml
         run: |
           cat > ~/.dbt/profiles.yml <<'EOF'
-          olist_dbt:
+          my_dbt_project:
             target: dev
             outputs:
               dev:
