@@ -1,0 +1,51 @@
+name: DBT CD Pipeline
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  dbt-cd:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dbt
+        run: |
+          pip install dbt-snowflake
+
+      - name: Create profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml <<EOF
+          netflix_project:
+            target: prod
+            outputs:
+              prod:
+                type: snowflake
+                account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+                user: ${{ secrets.SNOWFLAKE_USER }}
+                password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                role: ACCOUNTADMIN
+                database: ${{ secrets.SNOWFLAKE_DATABASE }}
+                warehouse: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+                schema: ${{ secrets.SNOWFLAKE_SCHEMA }}
+                threads: 4
+          EOF
+
+      - name: DBT Debug
+        run: dbt debug --profiles-dir ~/.dbt
+
+      - name: DBT Run
+        run: dbt run --profiles-dir ~/.dbt
+
+      - name: DBT Test
+        run: dbt test --profiles-dir ~/.dbt
