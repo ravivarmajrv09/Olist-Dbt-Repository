@@ -48,7 +48,7 @@ jobs:
         run: dbt run --profiles-dir ~/.dbt
 
       - name: DBT Snapshot
-        run: dbt snapshot --profiles-dir ~/.dbt
+        run: dbt snapshot --profiles-dir ~/.dbt --debug
 
       - name: DBT Test
         run: dbt test --profiles-dir ~/.dbt
