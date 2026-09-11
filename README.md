@@ -18,3 +18,4 @@ Try running the following commands:
 - Enterprise CI/CD workflow test 
 - Minor formatting fix
 - Test line
+- added snapshot
