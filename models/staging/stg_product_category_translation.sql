@@ -9,7 +9,7 @@ SELECT
     product_category_name,
     product_category_name_english,
 
-    CURRENT_TIMESTAMP() AS load_date,
-    'OLIST_S3' AS record_source
+    load_date,
+    'OLIST' AS record_source
 
 FROM source

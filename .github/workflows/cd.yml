@@ -31,13 +31,13 @@ jobs:
             outputs:
               prod:
                 type: snowflake
-                account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-                user: ${{ secrets.SNOWFLAKE_USER }}
-                password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                account: ${{ secrets.PROD_SNOWFLAKE_ACCOUNT }}
+                user: ${{ secrets.PROD_SNOWFLAKE_USER }}
+                password: ${{ secrets.PROD_SNOWFLAKE_PASSWORD }}
                 role: ACCOUNTADMIN
-                database: ${{ secrets.SNOWFLAKE_DATABASE }}
-                warehouse: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-                schema: ${{ secrets.SNOWFLAKE_SCHEMA }}
+                database: ${{ secrets.PROD_SNOWFLAKE_DATABASE }}
+                warehouse: ${{ secrets.PROD_SNOWFLAKE_WAREHOUSE }}
+                schema: ${{ secrets.PROD_SNOWFLAKE_SCHEMA }}
                 threads: 4
           EOF
 
@@ -46,7 +46,6 @@ jobs:
 
       - name: DBT Run
         run: dbt run --profiles-dir ~/.dbt
-
       - name: DBT Snapshot
         run: dbt snapshot --profiles-dir ~/.dbt --debug
 
