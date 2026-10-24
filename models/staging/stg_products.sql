@@ -16,7 +16,7 @@ SELECT
     product_height_cm,
     product_width_cm,
 
-    CURRENT_TIMESTAMP() AS load_date,
-    'OLIST_S3' AS record_source
+    load_date,
+    'OLIST' AS record_source
 
 FROM source
