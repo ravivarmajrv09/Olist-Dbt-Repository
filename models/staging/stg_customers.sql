@@ -11,6 +11,7 @@ SELECT
     customer_zip_code_prefix,
     customer_city,
     customer_state,
+    customer_contact_number,
 
     load_date,
     'OLIST' AS record_source
