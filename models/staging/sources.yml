@@ -3,15 +3,32 @@ version: 2
 sources:
   - name: olist
     database: OLIST_DEV
-    schema: STAGING
+    schema: RAW
 
     tables:
-      - name: orders
       - name: customers
+        identifier: OLIST_CUSTOMERS
+
+      - name: orders
+        identifier: OLIST_ORDERS
+
       - name: order_items
+        identifier: OLIST_ORDER_ITEMS
+
       - name: products
+        identifier: OLIST_PRODUCTS
+
       - name: sellers
+        identifier: OLIST_SELLERS
+
       - name: order_payments
+        identifier: OLIST_ORDER_PAYMENTS
+
       - name: order_reviews
+        identifier: OLIST_ORDER_REVIEWS
+
       - name: geolocation
+        identifier: OLIST_GEOLOCATION
+
       - name: product_category_translation
+        identifier: PRODUCT_CATEGORY_NAME_TRANSLATION

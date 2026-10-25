@@ -11,8 +11,9 @@ SELECT
     customer_zip_code_prefix,
     customer_city,
     customer_state,
+    customer_contact_number,
 
-    CURRENT_TIMESTAMP() AS load_date,
-    'OLIST_S3' AS record_source
+    load_date,
+    'OLIST' AS record_source
 
 FROM source
