@@ -12,6 +12,7 @@ WITH source_data AS (
         customer_zip_code_prefix,
         customer_city,
         customer_state,
+        customer_contact_number,
         load_date,
         record_source
     FROM {{ ref('stg_customers') }}
@@ -30,7 +31,8 @@ prepared AS (
                 COALESCE(TRIM(customer_unique_id), ''),
                 COALESCE(TRIM(customer_zip_code_prefix), ''),
                 COALESCE(TRIM(customer_city), ''),
-                COALESCE(TRIM(customer_state), '')
+                COALESCE(TRIM(customer_state), ''),
+                COALESCE(TRIM(customer_contact_number), '')
             ),
             256
         ) AS hashdiff,
@@ -39,6 +41,7 @@ prepared AS (
         customer_zip_code_prefix,
         customer_city,
         customer_state,
+        customer_contact_number,
         load_date,
         record_source
 
@@ -53,6 +56,7 @@ SELECT
     customer_zip_code_prefix,
     customer_city,
     customer_state,
+    customer_contact_number,
     load_date,
     record_source
 
@@ -61,6 +65,7 @@ FROM prepared p
 {% if is_incremental() %}
 
 WHERE NOT EXISTS (
+
     SELECT 1
     FROM {{ this }} s
     WHERE s.customer_hk = p.customer_hk
